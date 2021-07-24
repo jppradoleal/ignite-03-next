@@ -1,8 +1,8 @@
+import { FiCalendar, FiUser } from 'react-icons/fi';
+
 import { GetStaticProps } from 'next';
-
-import { getPrismicClient } from '../services/prismic';
-
 import commonStyles from '../styles/common.module.scss';
+import { getPrismicClient } from '../services/prismic';
 import styles from './home.module.scss';
 
 interface Post {
@@ -24,9 +24,31 @@ interface HomeProps {
   postsPagination: PostPagination;
 }
 
-// export default function Home() {
-//   // TODO
-// }
+export default function Home() {
+  // TODO
+  return (
+    <>
+      <main className={commonStyles.smallBorder}>
+        <div className={styles.posts}>
+          <a href="#">
+            <strong>Como utilizar Hooks</strong>
+            <p>Pensando em sincronização em vez de ciclos de vida.</p>
+            <div className="info">
+              <span>
+                <FiCalendar />
+                <time>19 Abr 2021</time>
+              </span>
+              <span>
+                <FiUser />
+                Joseph Oliveira
+              </span>
+            </div>
+          </a>
+        </div>
+      </main>
+    </>
+  )
+}
 
 // export const getStaticProps = async () => {
 //   // const prismic = getPrismicClient();
