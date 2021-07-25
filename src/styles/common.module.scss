@@ -1,8 +1,25 @@
 // TODO
 .smallBorder {
   max-width: 1120px;
+  margin: 0 auto;
 }
 
-.mediumBorder {
-  max-width: 720px;
+.info {
+  margin-top: 1.5rem;
+  gap: 1rem;
+  display: flex;
+  align-items: center;
+  
+  span {
+    display: flex;
+    align-items: center;
+    font-size: .875rem;
+    color: var(--gray-300);
+    text-align: center;
+    svg {
+      width: 20px;
+      height: 20px;
+      margin-right: .5rem;
+    }
+  }
 }
