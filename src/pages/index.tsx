@@ -1,7 +1,7 @@
 import { FiCalendar, FiUser } from 'react-icons/fi';
-import next, { GetStaticProps } from 'next';
 
 import ApiSearchResponse from '@prismicio/client/types/ApiSearchResponse';
+import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import Prismic from '@prismicio/client';
 import { RichText } from 'prismic-dom';
@@ -62,7 +62,11 @@ export default function Home({ postsPagination: { results: initialResult, next_p
                   <div className={commonStyles.info}>
                     <span>
                       <FiCalendar />
-                      <time>{post.first_publication_date}</time>
+                      <time>{
+                        format(new Date(post.first_publication_date), "dd MMM yyyy", {
+                          locale: ptBR
+                        })}
+                      </time>
                     </span>
                     <span>
                       <FiUser />
@@ -86,13 +90,11 @@ export default function Home({ postsPagination: { results: initialResult, next_p
 function treatPrismicPostData(postsResponse: ApiSearchResponse) {
   return postsResponse.results.map(post => ({
     uid: post.uid,
-    first_publication_date: format(new Date(post.first_publication_date), "dd MMM yyyy", {
-      locale: ptBR
-    }),
+    first_publication_date: post.first_publication_date,
     data: {
-      title: RichText.asText(post.data.title),
-      subtitle: RichText.asText(post.data.subtitle),
-      author: RichText.asText(post.data.author),
+      title: post.data.title,
+      subtitle: post.data.subtitle,
+      author: post.data.author,
     }
   }));
 }
